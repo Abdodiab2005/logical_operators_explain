@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1730">
+<title>تجربة الدوائر المنطقية — ThingLink Mini Lab</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1730;--panel:#112541;--edge:#29506f;--ink:#e9f8ff;--soft:#aac1d5;--cyan:#31ddf5;--blue:#439fff;--good:#82f7bd;--bad:#6c8396}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;color:var(--ink);background:transparent}
+body{padding:8px}.widget{width:min(100%,426px);margin:auto;background:linear-gradient(150deg,#122c4c,#0b1932 68%);border:1px solid #39739a;border-radius:16px;padding:13px 13px 12px;box-shadow:inset 0 0 0 1px #0a283d,0 14px 30px #0003}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}.top h1{font-size:17px;line-height:1.2;margin:0}.sub{color:var(--soft);font-size:11px;margin:4px 0 0}.pill{border:1px solid #2d7b8b;background:#113b55;border-radius:999px;font-size:11px;padding:5px 8px;color:#9af4ff;white-space:nowrap}
+.tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}.tab{cursor:pointer;border-radius:8px;border:1px solid #345976;background:#142b49;color:#b9d4e8;padding:9px 1px;font-size:11px;font-weight:800;min-width:0}.tab[aria-selected="true"]{border-color:#35d8fa;background:#114867;color:#fff;box-shadow:inset 0 0 0 1px #1bb1d4}.tab:focus-visible,.toggle:focus-visible,summary:focus-visible{outline:2px solid #f8e681;outline-offset:2px}
+.description{font-size:12px;line-height:1.5;color:#cde0f1;min-height:37px;margin:10px 0 5px}.formula{color:#8df6ff;font-weight:800;direction:ltr;unicode-bidi:isolate;display:inline-block}.diagram{width:100%;height:115px;display:block;background:linear-gradient(180deg,#0b223a,#0c1e35);border:1px solid #284c69;border-radius:10px}.board-label{font:700 13px system-ui, sans-serif;fill:#b8eaff}.wire{fill:none;stroke:#42cbe9;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.gate{fill:#0b2238;stroke:#cceeff;stroke-width:3}.digit{fill:#f0fbff;font:800 15px system-ui,sans-serif;text-anchor:middle}.outname{fill:#a6d3e1;font:700 12px system-ui,sans-serif}
+.actions{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:10px}.input-group{display:flex;align-items:center;gap:5px;border:1px solid #31516d;background:#122b46;padding:5px 8px;border-radius:9px;flex:1;min-width:91px;justify-content:space-between}.input-group.hidden{display:none}.name{font-weight:750;color:#e3f7ff;direction:ltr}.toggle{cursor:pointer;min-width:43px;min-height:35px;background:#253950;border:1px solid #496680;border-radius:8px;color:#fff;font-size:16px;font-weight:800;font-variant-numeric:tabular-nums}.toggle.on{background:#137f99;border-color:#35e3fd;box-shadow:inset 0 0 10px #31d9e95e}.results{margin-top:10px;display:flex;gap:8px}.result{flex:1;border:1px solid #365976;border-radius:10px;padding:8px 10px;background:#0b2036;display:flex;align-items:center;justify-content:space-between;gap:8px}.led{width:12px;height:12px;border-radius:50%;display:inline-block;background:#426175;border:1px solid #7892a7;box-shadow:inset 0 0 2px #0008}.led.on{background:#72fdb3;border-color:#ceffdf;box-shadow:0 0 11px #3bffae,0 0 4px #69ffbd}.reading{display:flex;align-items:center;gap:9px}.result strong{font-size:20px;font-variant-numeric:tabular-nums}.result-name{font-size:13px;color:#cce1ef;direction:ltr}.challenge{font-size:12px;color:#c8dcec;margin:9px 0 0;padding:8px 10px;background:#162f4b;border-radius:9px;border:1px dashed #375976;line-height:1.5}.challenge.success{border-color:#4ea884;color:#a8fad1}.challenge strong{color:#fff}
+details{margin-top:8px;border-top:1px solid #2d4a66;padding-top:7px}summary{cursor:pointer;color:#9bdbf6;font-size:12px;font-weight:700;list-style:revert}summary:hover{color:#fff}.table-wrap{max-height:200px;overflow:auto;margin-top:6px}table{width:100%;border-collapse:collapse;text-align:center;direction:ltr;font:600 12px system-ui}th,td{border:1px solid #284761;padding:5px}th{color:#86eefe;background:#15344c}tr.active{background:#144d55;color:#b9ffd5}
+.foot{font-size:10px;color:#92adbf;margin-top:9px;text-align:center}
+@media(max-width:360px){body{padding:4px}.widget{padding:9px}.top h1{font-size:15px}.tab{font-size:10px}.result{padding:7px}}
+</style>
+</head>
+<body>
+<main class="widget" aria-label="محاكي مصغر للدوائر المنطقية">
+  <div class="top"><div><h1>جرّب الدوائر بنفسك</h1><p class="sub">غيّر المدخلات 0 و1 ولاحظ المخرج</p></div><span class="pill">تجربة مباشرة</span></div>
+  <div class="tabs" role="tablist" aria-label="اختيار نوع الدائرة">
+    <button class="tab" data-gate="and" role="tab" aria-selected="true">AND</button>
+    <button class="tab" data-gate="or" role="tab" aria-selected="false">OR</button>
+    <button class="tab" data-gate="not" role="tab" aria-selected="false">NOT</button>
+    <button class="tab" data-gate="half" role="tab" aria-selected="false">HALF</button>
+    <button class="tab" data-gate="full" role="tab" aria-selected="false">FULL</button>
+  </div>
+  <div id="description" class="description" aria-live="polite"></div>
+  <svg id="diagram" class="diagram" viewBox="0 0 360 110" role="img" aria-label="مخطط الدائرة وقيم المدخلات والمخرجات" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div class="actions" aria-label="تغيير المدخلات">
+    <div class="input-group" data-input="a"><span class="name">A</span><button class="toggle" type="button" aria-label="غيّر المدخل A" aria-pressed="false">0</button></div>
+    <div class="input-group" data-input="b"><span class="name">B</span><button class="toggle" type="button" aria-label="غيّر المدخل B" aria-pressed="false">0</button></div>
+    <div class="input-group" data-input="cin"><span class="name">Cin</span><button class="toggle" type="button" aria-label="غيّر حمل الإدخال Cin" aria-pressed="false">0</button></div>
+  </div>
+  <div class="results" id="results" aria-live="polite"></div>
+  <div class="challenge" id="challenge" aria-live="polite"></div>
+  <details id="truth"><summary>اعرض جدول الصواب</summary><div class="table-wrap"><table id="truth-table"><thead></thead><tbody></tbody></table></div></details>
+  <div class="foot">نشاط تدريبي | الصورة الأساسية والشرح داخل ThingLink</div>
+</main>
+<script>
+(()=>{'use strict';
+ const cfg={
+   and:{name:'AND',desc:'تُخرج 1 فقط عندما يكون A وB كلاهما 1.',formula:'X = A ∧ B',inputs:['a','b'],outputs:['X'],goal:'اجعل X = 1',target:[1]},
+   or:{name:'OR',desc:'تُخرج 1 إذا كان أحد المدخلين على الأقل 1.',formula:'X = A ∨ B',inputs:['a','b'],outputs:['X'],goal:'اجعل X = 1',target:[1]},
+   not:{name:'NOT',desc:'تعكس قيمة المدخل: صفر يصبح واحدًا والعكس.',formula:'X = ¬A',inputs:['a'],outputs:['X'],goal:'اجعل X = 0',target:[0]},
+   half:{name:'Half Adder',desc:'يجمع بتّين ويُظهر المجموع S والحمل C.',formula:'S = A ⊕ B, C = A ∧ B',inputs:['a','b'],outputs:['S','C'],goal:'اجعل S = 0 و C = 1',target:[0,1]},
+   full:{name:'Full Adder',desc:'يجمع بتّين مع حمل داخل Cin.',formula:'S = A ⊕ B ⊕ Cin',inputs:['a','b','cin'],outputs:['S','Cout'],goal:'اجعل S = 1 و Cout = 1',target:[1,1]}
+ };
+ let state={gate:'and',a:0,b:0,cin:0};
+ const $=id=>document.getElementById(id), esc=x=>String(x);
+ function compute(key,a,b,cin){
+   if(key==='and')return [a&b];
+   if(key==='or')return [a|b];
+   if(key==='not')return [1-a];
+   if(key==='half')return [a^b,a&b];
+   return [a^b^cin,(a&b)|(cin&(a^b))];
+ }
+ function gateSvg(){
+   const g=state.gate,c=cfg[g],ins=c.inputs,vals=ins.map(k=>state[k]),outputs=compute(g,state.a,state.b,state.cin);
+   let s='';
+   const inYs=ins.length===1?[55]:ins.length===2?[34,76]:[23,55,87];
+   ins.forEach((k,i)=>{const y=inYs[i];s+=`<text x="24" y="${y-13}" class="outname">${k==='cin'?'Cin':k.toUpperCase()}</text><rect x="20" y="${y-11}" width="28" height="22" rx="6" fill="#163f5a" stroke="#416c8a"/><text x="34" y="${y+5}" class="digit">${state[k]}</text><path class="wire" d="M 50 ${y} H 145"/>`;});
+   if(g==='and')s+='<path class="gate" d="M145 18 H185 A37 37 0 0 1 185 92 H145 Z"/>';
+   else if(g==='or')s+='<path class="gate" d="M145 18 Q187 22 220 55 Q187 88 145 92 Q174 55 145 18 Z"/>';
+   else if(g==='not')s+='<path class="gate" d="M145 23 L213 55 L145 87 Z"/><circle cx="220" cy="55" r="7" class="gate"/>';
+   else s+=`<rect x="146" y="9" width="94" height="92" rx="10" class="gate"/><text x="193" y="48" class="digit">${g==='half'?'HALF':'FULL'}</text><text x="193" y="67" class="outname" text-anchor="middle">ADDER</text>`;
+   const ox=g==='not'?229: g==='and'||g==='or'?225:243;
+   if(outputs.length===1){const on=outputs[0]===1;s+=`<path class="wire" d="M ${ox} 55 H 305"/><text x="270" y="40" class="outname">X</text><circle cx="312" cy="55" r="12" fill="${on?'#62f8ac':'#35516c'}" stroke="${on?'#bbffd7':'#7490a6'}" stroke-width="2" ${on?'filter="url(#glow)"':''}/><text x="312" y="60" class="digit" fill="#0c2030">${outputs[0]}</text>`;}
+   else outputs.forEach((o,i)=>{const y=i===0?34:76,on=o===1;s+=`<path class="wire" d="M 241 ${y} H 303"/><text x="269" y="${y-12}" class="outname">${c.outputs[i]}</text><circle cx="314" cy="${y}" r="11" fill="${on?'#62f8ac':'#35516c'}" stroke="${on?'#bbffd7':'#7490a6'}" stroke-width="2" ${on?'filter="url(#glow)"':''}/><text x="314" y="${y+5}" class="digit">${o}</text>`;});
+   return '<defs><filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>'+s;
+ }
+ function updateTruth(){const c=cfg[state.gate];const rows=[];const combinations=1<<c.inputs.length;for(let n=0;n<combinations;n++){const vals=c.inputs.map((_,i)=>(n>>(c.inputs.length-i-1))&1);const m={a:0,b:0,cin:0};c.inputs.forEach((k,i)=>m[k]=vals[i]);rows.push([...vals,...compute(state.gate,m.a,m.b,m.cin)]);}const current=c.inputs.map(k=>state[k]).join('');$('truth-table').querySelector('thead').innerHTML='<tr>'+[...c.inputs.map(x=>x==='cin'?'Cin':x.toUpperCase()),...c.outputs].map(x=>`<th>${x}</th>`).join('')+'</tr>';$('truth-table').querySelector('tbody').innerHTML=rows.map(r=>`<tr class="${r.slice(0,c.inputs.length).join('')===current?'active':''}">${r.map(v=>`<td>${v}</td>`).join('')}</tr>`).join('');}
+ function draw(){const c=cfg[state.gate];document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',String(t.dataset.gate===state.gate)));$('description').innerHTML=c.desc+' <span class="formula">'+c.formula+'</span>';$('diagram').innerHTML=gateSvg();document.querySelectorAll('.input-group').forEach(n=>{const k=n.dataset.input,nShow=c.inputs.includes(k);n.classList.toggle('hidden',!nShow);const b=n.querySelector('button');b.textContent=state[k];b.classList.toggle('on',state[k]===1);b.setAttribute('aria-pressed',String(state[k]===1));});const outs=compute(state.gate,state.a,state.b,state.cin);$('results').innerHTML=outs.map((v,i)=>`<div class="result"><span class="result-name">${c.outputs[i]}</span><span class="reading"><span class="led ${v?'on':''}" aria-hidden="true"></span><strong>${v}</strong></span></div>`).join('');const success=outs.every((v,i)=>v===c.target[i]);$('challenge').className='challenge'+(success?' success':'');$('challenge').innerHTML=success?'✓ ممتاز! وصلت للنتيجة المطلوبة.':'<strong>تحدي:</strong> '+c.goal+' باستخدام المفاتيح.';updateTruth();}
+ const params=new URLSearchParams(location.search);const selected=params.get('gate');if(cfg[selected])state.gate=selected;const lock=params.get('lock')==='1';if(lock)document.querySelector('.tabs').hidden=true;
+ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{state={gate:t.dataset.gate,a:0,b:0,cin:0};$('truth').open=false;draw();}));
+ document.querySelectorAll('.input-group').forEach(n=>n.querySelector('button').addEventListener('click',()=>{const k=n.dataset.input;state[k]=1-state[k];draw();}));
+ window.__logicMiniTest={compute,getState:()=>({...state})};draw();
+})();
+</script>
+</body>
+</html>
