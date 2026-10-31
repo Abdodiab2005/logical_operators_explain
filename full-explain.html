@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#08152e" />
+  <meta name="description" content="معمل الدوائر المنطقية التفاعلي - أولى ثانوي: AND, OR, NOT, Half Adder, Full Adder" />
+  <title>معمل الدوائر المنطقية | أولى ثانوي</title>
+  <style>
+    :root{color-scheme:dark;--bg:#071126;--panel:#101e38;--panel2:#152641;--line:#2a405c;--text:#ecf5ff;--muted:#a5bed7;--cyan:#47e7ed;--blue:#4da6ff;--green:#57efb3;--rose:#ffb3ae;--shadow:0 20px 46px rgba(0,0,0,.18)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 90% 0%,#133c64 0,transparent 45%),radial-gradient(ellipse at 0 100%,#173556 0,transparent 40%),var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif}
+    button{font:inherit;cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}a{color:var(--cyan)}.container{max-width:1170px;margin:auto;padding:24px 20px 55px}.hero{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-bottom:25px}.eyebrow{color:var(--cyan);letter-spacing:1px;font-size:.76rem;font-weight:800}.hero h1{font-size:clamp(1.7rem,4vw,2.65rem);margin:6px 0 5px;line-height:1.25}.subtitle{color:var(--muted);margin:0;max-width:700px}.pill{border:1px solid #407899;color:#bfeffb;white-space:nowrap;padding:7px 13px;border-radius:30px;font-size:.85rem;background:#122b47}
+    .layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:18px}.panel{background:linear-gradient(160deg,rgba(22,43,72,.98),rgba(14,29,54,.97));border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}.side{padding:19px}.panelTitle{margin:0 0 14px;font-size:1.03rem;font-weight:800}.stations{display:grid;gap:8px}.station{width:100%;border:1px solid #2d4360;background:rgba(7,23,45,.55);padding:12px;text-align:right;border-radius:12px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;gap:8px;transition:.15s}.station:hover{border-color:var(--cyan);color:var(--text)}.station.active{color:var(--text);background:#12415b;border-color:#5bdbdf}.station small{font-family:ui-monospace,monospace;color:var(--cyan);font-size:.74rem;direction:ltr}.sideHint{font-size:.81rem;color:var(--muted);padding:15px 4px 0;margin:0;border-top:1px solid var(--line);margin-top:17px}
+    .main{padding:23px}.topline{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:start}.topline h2{margin:0;font-size:1.42rem}.concept{color:var(--muted);margin:5px 0 0;max-width:650px}.formula{font-family:ui-monospace,Consolas,monospace;direction:ltr;display:inline-flex;align-items:center;border-radius:9px;padding:8px 10px;background:#09192c;border:1px solid #275473;color:var(--cyan);font-size:.95rem}
+    .workgrid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(230px,.9fr);gap:17px;margin:22px 0}.circuit{position:relative;min-height:290px;background:radial-gradient(circle at 50% 50%,#183d57,transparent 68%),repeating-linear-gradient(0deg,transparent 0 20px,rgba(92,142,171,.07) 20px 21px),repeating-linear-gradient(90deg,transparent 0 20px,rgba(92,142,171,.07) 20px 21px),#09172b;border:1px solid #2d5268;border-radius:16px;display:flex;justify-content:center;align-items:center;padding:12px;overflow:hidden}.circuit svg{width:100%;max-width:510px;height:auto}.wire{stroke:#5783a8;stroke-width:4;fill:none}.wire.hot{stroke:var(--cyan);filter:drop-shadow(0 0 5px rgba(71,231,237,.7))}.gateShape{fill:#164564;stroke:var(--cyan);stroke-width:3}.gateLabel{fill:white;font-size:19px;font-weight:800;font-family:system-ui,sans-serif}.wireLabel{fill:#d6efff;font-size:18px;font-family:Consolas,monospace}.circleOn{fill:var(--green);filter:drop-shadow(0 0 9px rgba(87,239,179,.85))}.circleOff{fill:#334762;stroke:#718ba2;stroke-width:2}.inputs{background:#0c1c35;border:1px solid #2d4766;border-radius:16px;padding:18px}.inputs h3,.truth h3{font-size:1.02rem;margin:0 0 8px}.inputs>p{margin:0 0 15px;color:var(--muted);font-size:.85rem}.switchRow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid #233d5a}.switchLabel{font:700 .97rem ui-monospace,Consolas,monospace;direction:ltr}.toggle{display:flex;gap:9px;align-items:center;border:1px solid #54708a;background:#112744;border-radius:999px;padding:5px 8px;color:var(--text);font-size:.83rem;min-width:104px;justify-content:space-between}.toggle .nub{width:24px;height:24px;border-radius:50%;background:#6d879c;transition:.2s}.toggle[aria-checked="true"]{border-color:#3ffac3;background:#114d49}.toggle[aria-checked="true"] .nub{background:var(--green);box-shadow:0 0 13px #41dcb1}.outputs{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}.ledBox{display:flex;align-items:center;gap:10px;padding:11px 13px;background:#10213b;border:1px solid #35526e;border-radius:11px;min-width:112px}.led{width:21px;height:21px;border-radius:50%;background:#334358;border:2px solid #687e99;box-shadow:inset 0 0 7px #061122}.led.on{background:var(--green);border-color:#b9ffe4;box-shadow:0 0 14px #4ff3b0, inset 0 0 8px #c7ffe9}.ledtext strong{display:block;direction:ltr;text-align:left}.ledtext span{display:block;font-size:.7rem;color:var(--muted)}
+    .truth{margin-top:9px}.tablebox{overflow:auto;border:1px solid #2d4865;border-radius:12px;background:#0c1b33}table{border-collapse:collapse;width:100%;text-align:center;direction:ltr;font-family:ui-monospace,Consolas,monospace}th,td{padding:9px 8px;border-bottom:1px solid #203952}th{color:var(--cyan);background:#0e2a43}tr:last-child td{border-bottom:0}tbody tr.selected{background:#15534c;outline:1px solid #35debe;outline-offset:-1px}tbody tr.selected td{font-weight:900;color:#f1fffb}.notice{color:var(--muted);font-size:.83rem;margin:12px 0 0}.next{border:1px solid #4b7a99;color:#e4faff;background:#113b59;border-radius:10px;padding:8px 12px;font-weight:700}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:17px;flex-wrap:wrap}
+    .quiz{margin-top:22px;padding:25px}.quizTop{display:flex;justify-content:space-between;align-items:center;gap:12px}.quiz h2{margin:0;font-size:1.4rem}.quizIntro{color:var(--muted);margin:5px 0 18px}.question{border-top:1px solid #2a405c;padding:17px 0}.question h3{font-size:1rem;margin:0 0 10px}.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.choice{border:1px solid #324e67;background:#0e2240;border-radius:10px;padding:10px 11px;text-align:right;color:var(--text);transition:.15s}.choice:hover{border-color:var(--cyan)}.choice.selected{background:#16435e;border-color:var(--cyan)}.choice.correct{border-color:var(--green);background:#0b4a40}.choice.wrong{border-color:var(--rose);background:#563039}.feedback{font-size:.85rem;margin-top:8px;color:var(--muted)}.primary{border:0;padding:12px 22px;background:linear-gradient(110deg,#28cae0,#53aaff);border-radius:11px;color:#061b31;font-weight:900}.secondary{border:1px solid #4b7797;padding:11px 17px;background:transparent;color:var(--text);border-radius:11px;font-weight:700}.quizActions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.result{font-weight:900;font-size:1.15rem;color:var(--green)}.footer{color:#7f9bb7;text-align:center;font-size:.82rem;padding-top:24px}
+    @media(max-width:860px){.layout{grid-template-columns:1fr}.stations{grid-template-columns:repeat(5,minmax(125px,1fr));overflow:auto}.station{padding:9px;display:grid;text-align:center}.sideHint{margin-top:10px;padding-top:10px}.side{padding:14px}.workgrid{grid-template-columns:1fr}.circuit{min-height:230px}.hero{display:block}.pill{display:inline-block;margin-top:13px}}
+    @media(max-width:540px){.container{padding:15px 11px 40px}.main,.quiz{padding:16px}.choices{grid-template-columns:1fr}.hero h1{font-size:1.78rem}.topline h2{font-size:1.25rem}.circuit{min-height:190px}.inputs{padding:13px}.stations{grid-template-columns:repeat(5,130px)}}
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header class="hero">
+    <div><div class="eyebrow">DIGITAL LOGIC LAB · الصف الأول الثانوي</div><h1>معمل الدوائر المنطقية التفاعلي</h1><p class="subtitle">جرّب قيم 0 و1 بنفسك، اكتشف كيف تعمل البوابات المنطقية، وتابع المخرجات وجداول الصواب مباشرة.</p></div>
+    <div class="pill">الوحدة السابعة · الدرس 7-3</div>
+  </header>
+  <div class="layout" id="lab">
+    <aside class="panel side" aria-label="اختيار المحطة التعليمية">
+      <h2 class="panelTitle">المحطات التعليمية</h2>
+      <nav class="stations" id="stations" aria-label="البوابات والدوائر"></nav>
+      <p class="sideHint">ابدأ ببوابة AND، وغيّر المدخلات. جرّب جميع الاحتمالات الأربعة قبل الانتقال إلى المحطة التالية. دائرة الجمع الكامل للتوسّع بعد الجمع النصفي.</p>
+    </aside>
+    <main class="panel main">
+      <div class="topline"><div><h2 id="stationTitle">بوابة AND</h2><p class="concept" id="description"></p></div><span class="formula" id="formula" aria-label="العلاقة المنطقية"></span></div>
+      <div class="workgrid">
+        <section class="circuit" aria-label="رسم تفاعلي للدائرة المنطقية"><div id="diagram" style="width:100%"></div></section>
+        <section class="inputs" aria-label="مفاتيح المدخلات والمخرجات"><h3>جرّب المفاتيح</h3><p>اضغط على المفتاح لتغيّر قيمته بين 0 و1.</p><div id="switches"></div><div class="outputs" id="outputs" role="status" aria-live="polite"></div></section>
+      </div>
+      <section class="truth"><h3>جدول الصواب <span style="color:var(--muted);font-size:.8rem;font-weight:400">(الصف المضيء يطابق اختيارك)</span></h3><div class="tablebox"><table id="table" aria-label="جدول الصواب"></table></div></section>
+      <div class="toolbar"><p class="notice" id="tip"></p><button class="next" id="nextGate">المحطة التالية ←</button></div>
+    </main>
+  </div>
+  <section class="panel quiz" id="quiz"><div class="quizTop"><h2>اختبر نفسك</h2><span class="pill">5 أسئلة · 5 درجات</span></div><p class="quizIntro">بعد تجربة البوابات، حل الأسئلة. هتظهر لك الإجابات والتفسير عند الضغط على «تصحيح».</p><div id="questions"></div><div class="quizActions"><button class="primary" id="gradeQuiz">تصحيح الإجابات</button><button class="secondary" id="resetQuiz">إعادة الاختبار</button><span id="result" class="result" role="status" aria-live="polite"></span></div></section>
+  <footer class="footer">وسيلة تعليمية تطبيقية لدرس الدوائر المنطقية، الصف الأول الثانوي · محاكاة منطقية مبسّطة وليست نموذجًا لجهود الدوائر الكهربائية الفعلية</footer>
+</div>
+<script>
+'use strict';
+const gateInfo = [
+{id:'and', en:'AND',ar:'بوابة الاقتران AND', description:'المخرج يساوي 1 فقط إذا كان المدخلان A وB يساويان 1 معًا.',formula:'X = A ∧ B',inputs:['A','B'],outputs:['X'],calc:({A,B})=>({X:A&B}),tip:'جرّب A=1 وB=0، ثم غيّر B إلى 1. ماذا تلاحظ؟'},
+{id:'or',en:'OR',ar:'بوابة الانفصال OR',description:'المخرج يساوي 1 إذا كان مدخل واحد على الأقل يساوي 1.',formula:'X = A ∨ B',inputs:['A','B'],outputs:['X'],calc:({A,B})=>({X:A|B}),tip:'جرّب A=0 وB=1. هل تحتاج إلى تشغيل المفتاحين؟'},
+{id:'not',en:'NOT',ar:'بوابة النفي NOT',description:'لها مدخل واحد؛ عندما تكون قيمته 0 يكون المخرج 1، والعكس صحيح.',formula:'X = ¬A',inputs:['A'],outputs:['X'],calc:({A})=>({X:1-A}),tip:'جرّب 0 ثم 1، ولاحظ أن المخرج عكس المدخل.'},
+{id:'half',en:'HALF ADDER',ar:'دائرة الجمع النصفي',description:'تجمع بتّين A وB؛ الناتج S هو بتّ المجموع، وC هو بتّ الحمل. عند 1+1 يصبح S=0 وC=1.',formula:'S = A ⊕ B  ·  C = A ∧ B',inputs:['A','B'],outputs:['S','C'],calc:({A,B})=>({S:A^B,C:A&B}),tip:'عندما تجمع 1+1 في النظام الثنائي يكون الناتج 10؛ أين يظهر الحمل؟'},
+{id:'full',en:'FULL ADDER',ar:'دائرة الجمع الكامل',description:'تجمع ثلاث قيم: A وB والحمل الداخل Cin، وتنتج بتّ المجموع S والحمل الخارج Cout.',formula:'S = A ⊕ B ⊕ Cin',inputs:['A','B','Cin'],outputs:['S','Cout'],calc:({A,B,Cin})=>({S:A^B^Cin,Cout:(A&B)|(Cin&(A^B))}),tip:'جرّب A=1 وB=1 وCin=1: الناتج الثنائي 11؛ ما قيمة S وCout؟'}
+];
+const answers = {};
+const state={current:0,values:{A:0,B:0,Cin:0},quiz:{},graded:false};
+const $=id=>document.getElementById(id);
+const digit=v=>Number(v)||0;
+function gateSvg(g,inputs,results){
+  const on=n=>digit(n)===1;
+  const wire=(x1,y1,x2,y2,active)=>`<path d="M${x1} ${y1} L${x2} ${y2}" class="wire ${active?'hot':''}"/>`;
+  const dot=(x,y,active)=>`<circle cx="${x}" cy="${y}" r="10" class="${active?'circleOn':'circleOff'}"/>`;
+  const label=(x,y,t)=>`<text x="${x}" y="${y}" class="wireLabel" text-anchor="middle">${t}</text>`;
+  const shape=g.id==='and'?'<path class="gateShape" d="M162 85 L215 85 Q310 85 310 145 Q310 205 215 205 L162 205 Z"/>':g.id==='or'?'<path class="gateShape" d="M159 85 Q225 145 159 205 Q251 209 326 145 Q250 81 159 85 Z"/>':'<path class="gateShape" d="M177 90 L285 145 L177 200 Z"/><circle cx="300" cy="145" r="15" fill="#164564" stroke="#47e7ed" stroke-width="3"/>';
+  if(['and','or','not'].includes(g.id)){
+    const isNot=g.id==='not';let a=inputs.A,b=inputs.B??0;const gateName=g.en;
+    return `<svg viewBox="0 0 480 290" role="img" aria-label="رسم بوابة ${gateName}">${wire(40,isNot?145:113,175,isNot?145:113,on(a))}${isNot?'':wire(40,177,175,177,on(b))}${shape}${wire(isNot?316:326,145,422,145,on(results.X))}${dot(45,isNot?145:113,on(a))}${isNot?'':dot(45,177,on(b))}${dot(422,145,on(results.X))}${label(53,isNot?130:95,'A')}${isNot?'':label(53,161,'B')}${label(429,128,'X')}${label(230,151,gateName)}</svg>`;
+  }
+  const full=g.id==='full',middle=full?'A + B + Cin':'A + B';
+  return `<svg viewBox="0 0 480 290" role="img" aria-label="مخطط دائرة ${full?'الجمع الكامل':'الجمع النصفي'}">${g.inputs.map((k,i)=>wire(40,88+i*48,174,88+i*48,on(inputs[k]))+dot(45,88+i*48,on(inputs[k]))+label(52,72+i*48,k)).join('')}<rect class="gateShape" x="174" y="65" width="132" height="169" rx="18"/><text x="240" y="127" class="gateLabel" text-anchor="middle">${full?'FULL':'HALF'}</text><text x="240" y="154" class="gateLabel" text-anchor="middle">ADDER</text>${wire(306,120,433,120,on(results.S))}${wire(306,190,433,190,on(results[full?'Cout':'C']))}${dot(433,120,on(results.S))}${dot(433,190,on(results[full?'Cout':'C']))}${label(434,100,'S')}${label(434,174,full?'Cout':'C')}</svg>`;
+}
+function render(){
+  const g=gateInfo[state.current],v=state.values,r=g.calc(v);
+  $('stationTitle').textContent=g.ar;
+  $('description').textContent=g.description;
+  $('formula').textContent=g.formula;
+  $('tip').textContent=g.tip;
+  $('stations').innerHTML=gateInfo.map((s,i)=>`<button class="station ${i===state.current?'active':''}" data-gate="${i}" aria-current="${i===state.current?'page':'false'}"><span>${s.ar}</span><small>${s.en}</small></button>`).join('');
+  document.querySelectorAll('[data-gate]').forEach(b=>b.addEventListener('click',()=>{state.current=Number(b.dataset.gate);state.values={A:0,B:0,Cin:0};render()}));
+  $('switches').innerHTML=g.inputs.map(k=>`<div class="switchRow"><span class="switchLabel">${k}</span><button class="toggle" role="switch" aria-label="تغيير قيمة ${k}" aria-checked="${onBool(v[k])}" data-input="${k}"><span>${v[k]}</span><span class="nub" aria-hidden="true"></span></button></div>`).join('');
+  document.querySelectorAll('[data-input]').forEach(b=>b.addEventListener('click',()=>{let k=b.dataset.input;state.values[k]=1-state.values[k];render()}));
+  $('outputs').innerHTML=g.outputs.map(k=>`<div class="ledBox"><span class="led ${r[k]?'on':''}" aria-hidden="true"></span><div class="ledtext"><strong>${k} = ${r[k]}</strong><span>${r[k]?'LED مضيء':'LED مطفأ'}</span></div></div>`).join('');
+  $('diagram').innerHTML=gateSvg(g,v,r);
+  const cols=[...g.inputs,...g.outputs],rows=[];const total=2**g.inputs.length;
+  for(let n=0;n<total;n++){const current={};g.inputs.forEach((key,i)=>current[key]=(n>>(g.inputs.length-i-1))&1);const result=g.calc(current);const selected=g.inputs.every(k=>current[k]===v[k]);rows.push(`<tr class="${selected?'selected':''}">${cols.map(k=>`<td>${k in current?current[k]:result[k]}</td>`).join('')}</tr>`)}
+  $('table').innerHTML=`<thead><tr>${cols.map(c=>`<th scope="col">${c}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody>`;
+}
+function onBool(x){return x===1?'true':'false'}
+$('nextGate').addEventListener('click',()=>{state.current=(state.current+1)%gateInfo.length;state.values={A:0,B:0,Cin:0};render()});
+const questions=[
+{q:'إذا كانت A=1 وB=0، فما خرج بوابة AND؟',opts:['0','1','10','11'],a:0,why:'AND لا تعطي 1 إلا إذا كان المدخلان يساويان 1.'},
+{q:'إذا كانت A=0 وB=1، فما خرج بوابة OR؟',opts:['0','2','1','10'],a:2,why:'OR تعطي 1 عندما يكون مدخل واحد على الأقل يساوي 1.'},
+{q:'إذا كان مدخل بوابة NOT هو 1، فما قيمة المخرج؟',opts:['1','0','10','غير محدد'],a:1,why:'بوابة NOT تعكس قيمة المدخل.'},
+{q:'عند جمع 1+1 في دائرة الجمع النصفي، ما قيمتا S وC؟',opts:['S=1, C=0','S=1, C=1','S=0, C=0','S=0, C=1'],a:3,why:'1+1 بالنظام الثنائي يساوي 10؛ إذن المجموع S=0 والحمل C=1.'},
+{q:'عند A=1 وB=1 وCin=1 في دائرة الجمع الكامل، فما الناتج؟',opts:['S=1, Cout=1','S=0, Cout=1','S=1, Cout=0','S=0, Cout=0'],a:0,why:'1+1+1 يساوي 3 بالنظام العشري (11 ثنائيًا)، وبالتالي S=1 وCout=1.'}
+];
+function renderQuestions(){
+  $('questions').innerHTML=questions.map((q,i)=>`<div class="question"><h3>${i+1}. ${q.q}</h3><div class="choices">${q.opts.map((opt,j)=>{const chosen=state.quiz[i]===j, graded=state.graded;const cls=graded&&j===q.a?'correct':graded&&chosen&&j!==q.a?'wrong':chosen?'selected':'';return `<button class="choice ${cls}" data-question="${i}" data-answer="${j}" aria-pressed="${chosen}">${opt}</button>`}).join('')}</div>${state.graded?`<p class="feedback">${q.why}</p>`:''}</div>`).join('');
+  document.querySelectorAll('[data-question]').forEach(b=>b.addEventListener('click',()=>{if(state.graded)return;state.quiz[Number(b.dataset.question)]=Number(b.dataset.answer);renderQuestions()}));
+}
+$('gradeQuiz').addEventListener('click',()=>{if(Object.keys(state.quiz).length<questions.length){$('result').textContent='جاوب عن الأسئلة الخمسة أولًا.';return;}state.graded=true;const score=questions.reduce((n,q,i)=>n+(state.quiz[i]===q.a?1:0),0);$('result').textContent=`نتيجتك: ${score} / ${questions.length}`;renderQuestions();});
+$('resetQuiz').addEventListener('click',()=>{state.quiz={};state.graded=false;$('result').textContent='';renderQuestions()});
+render();renderQuestions();
+</script>
+</body>
+</html>
